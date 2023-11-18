@@ -10,7 +10,11 @@ class Program
         if (int.TryParse(Console.ReadLine(), out int n))
         {
             Console.Write("Kurt Türlerini Girin: ");
-            int[] kurtDizisi = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+            string kurtGiris = Console.ReadLine();
+
+            int[] kurtDizisi = kurtGiris.Replace(" ", "")
+                .Select(c => int.Parse(c.ToString()))
+                .ToArray();
 
             int sonuc = MostRepatedID(kurtDizisi);
             Console.WriteLine("En Çok Tespit Edilen En Küçük ID: " + sonuc);
@@ -21,17 +25,18 @@ class Program
         }
     }
 
-
     static int MostRepatedID(int[] kurtDizisi)
     {
         Dictionary<int, int> tespitSayilari = new Dictionary<int, int>();
 
-        foreach (int kurtID in kurtDizisi)
+        for (int i = 0; i < kurtDizisi.Length; i++)
         {
+            int kurtID = kurtDizisi[i];
+
             if (tespitSayilari.ContainsKey(kurtID))
                 tespitSayilari[kurtID]++;
             else
-                tespitSayilari[kurtID] = 1;
+                tespitSayilari.Add(kurtID,1);
         }
 
         int enCokTespitEdilenID = tespitSayilari
