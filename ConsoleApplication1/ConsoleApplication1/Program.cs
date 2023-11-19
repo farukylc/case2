@@ -12,34 +12,39 @@ class Program
             Console.Write("Kurt Türlerini Girin: ");
             string kurtGiris = Console.ReadLine();
 
-            int[] kurtDizisi = kurtGiris.Replace(" ", "")
-                .Select(c => int.Parse(c.ToString()))
+            byte[] kurtDizisi = kurtGiris.Replace(" ", "")
+                .Select(c => Convert.ToByte(c.ToString()))
                 .ToArray();
+            if (kurtDizisi.Length != n)
+            {
+                Console.WriteLine($"Girilen kurt türü sayısı {n} ile eşleşmiyor. Lütfen doğru sayıda kurt türü girin.");
+                return;
+            }
 
-            int sonuc = MostRepatedID(kurtDizisi);
+            byte sonuc = MostRepeatedID(kurtDizisi);
             Console.WriteLine("En Çok Tespit Edilen En Küçük ID: " + sonuc);
         }
         else
         {
-            Console.WriteLine("Geçersiz dizi boyutu. Lütfen bir tamsayı girin.");
+            Console.WriteLine("Geçersiz dizi boyutu. Lütfen pozitif bir tamsayı girin.");
         }
     }
 
-    static int MostRepatedID(int[] kurtDizisi)
+    static byte MostRepeatedID(byte[] kurtDizisi)
     {
-        Dictionary<int, int> tespitSayilari = new Dictionary<int, int>();
+        Dictionary<byte, byte> tespitSayilari = new Dictionary<byte, byte>();
 
-        for (int i = 0; i < kurtDizisi.Length; i++)
+        for (byte i = 0; i < kurtDizisi.Length; i++)
         {
-            int kurtID = kurtDizisi[i];
+            byte kurtID = kurtDizisi[i];
 
             if (tespitSayilari.ContainsKey(kurtID))
                 tespitSayilari[kurtID]++;
             else
-                tespitSayilari.Add(kurtID,1);
+                tespitSayilari.Add(kurtID, 1);
         }
 
-        int enCokTespitEdilenID = tespitSayilari
+        byte enCokTespitEdilenID = tespitSayilari
             .OrderByDescending(x => x.Value)
             .ThenBy(x => x.Key)
             .First().Key;
