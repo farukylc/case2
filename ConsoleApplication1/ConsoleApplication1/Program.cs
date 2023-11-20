@@ -40,6 +40,8 @@ namespace ConsoleApplication1
             else
             {
                 Console.WriteLine("Geçersiz dizi boyutu. Lütfen pozitif bir tamsayı girin.");
+                System.Threading.Thread.Sleep(2000);
+                Environment.Exit(0);
             }
         }
 
