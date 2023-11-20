@@ -2,48 +2,64 @@
 using System.Collections.Generic;
 using System.Linq;
 
-class Program
+namespace ConsoleApplication1
 {
-    static void Main()
+    public class Program
     {
-        Console.Write("Dizi Boyutunu Girin: ");
-        if (int.TryParse(Console.ReadLine(), out int n))
+        public static void Main()
         {
-            Console.Write("Kurt Türlerini Girin: ");
-            string kurtGiris = Console.ReadLine();
+            Console.Write("Dizi Boyutunu Girin: ");
+            if (int.TryParse(Console.ReadLine(), out int arraySize))
+            {
+                Console.Write("Kurt Türlerini Girin: ");
+                string wolfInput = Console.ReadLine();
+                char[] charList = wolfInput.Replace(" ", "").ToCharArray();
+                byte[] wolfArray = new byte[charList.Length];
+                if (wolfArray.Length != arraySize)
+                {
+                    Console.WriteLine($"Girilen kurt türü sayısı {arraySize} ile eşleşmiyor. Lütfen doğru sayıda kurt türü girin.");
+                    return;
+                }
 
-            int[] kurtDizisi = kurtGiris.Replace(" ", "")
-                .Select(c => int.Parse(c.ToString()))
-                .ToArray();
+                for (int i = 0; i < charList.Length; i++)
+                {
+                    if (!byte.TryParse(charList[i].ToString(), out byte wolfID))
+                    {
+                        Console.WriteLine("Hatalı giriş");
+                        System.Threading.Thread.Sleep(2000);
+                        Environment.Exit(0);
+                    }
 
-            int sonuc = MostRepatedID(kurtDizisi);
-            Console.WriteLine("En Çok Tespit Edilen En Küçük ID: " + sonuc);
-        }
-        else
-        {
-            Console.WriteLine("Geçersiz dizi boyutu. Lütfen bir tamsayı girin.");
-        }
-    }
+                    wolfArray[i] = wolfID;
+                }
 
-    static int MostRepatedID(int[] kurtDizisi)
-    {
-        Dictionary<int, int> tespitSayilari = new Dictionary<int, int>();
-
-        for (int i = 0; i < kurtDizisi.Length; i++)
-        {
-            int kurtID = kurtDizisi[i];
-
-            if (tespitSayilari.ContainsKey(kurtID))
-                tespitSayilari[kurtID]++;
+                byte result = MostRepeatedID(wolfArray);
+                Console.WriteLine("En Çok Tespit Edilen En Küçük ID: " + result);
+            }
             else
-                tespitSayilari.Add(kurtID,1);
+            {
+                Console.WriteLine("Geçersiz dizi boyutu. Lütfen pozitif bir tamsayı girin.");
+            }
         }
 
-        int enCokTespitEdilenID = tespitSayilari
-            .OrderByDescending(x => x.Value)
-            .ThenBy(x => x.Key)
-            .First().Key;
+        static byte MostRepeatedID(byte[] wolfArray)
+        {
+            Dictionary<byte, byte> detectionCounts = new Dictionary<byte, byte>();
 
-        return enCokTespitEdilenID;
+            foreach (byte wolfID in wolfArray)
+            {
+                if (detectionCounts.ContainsKey(wolfID))
+                    detectionCounts[wolfID]++;
+                else
+                    detectionCounts.Add(wolfID, 1);
+            }
+
+            byte mostDetectedID = detectionCounts
+                .OrderByDescending(x => x.Value)
+                .ThenBy(x => x.Key)
+                .First().Key;
+
+            return mostDetectedID;
+        }
     }
 }

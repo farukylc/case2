@@ -4,3 +4,9 @@
 /Users/farukyolcu/Desktop/crmproject/ConsoleApplication1/ConsoleApplication1/obj/Debug/ConsoleApplication1.csproj.CoreCompileInputs.cache
 /Users/farukyolcu/Desktop/crmproject/ConsoleApplication1/ConsoleApplication1/obj/Debug/ConsoleApplication1.exe
 /Users/farukyolcu/Desktop/crmproject/ConsoleApplication1/ConsoleApplication1/obj/Debug/ConsoleApplication1.pdb
+/Users/farukyolcu/Desktop/case2/ConsoleApplication1/ConsoleApplication1/bin/Debug/ConsoleApplication1.exe
+/Users/farukyolcu/Desktop/case2/ConsoleApplication1/ConsoleApplication1/bin/Debug/ConsoleApplication1.pdb
+/Users/farukyolcu/Desktop/case2/ConsoleApplication1/ConsoleApplication1/obj/Debug/ConsoleApplication1.csproj.AssemblyReference.cache
+/Users/farukyolcu/Desktop/case2/ConsoleApplication1/ConsoleApplication1/obj/Debug/ConsoleApplication1.csproj.CoreCompileInputs.cache
+/Users/farukyolcu/Desktop/case2/ConsoleApplication1/ConsoleApplication1/obj/Debug/ConsoleApplication1.exe
+/Users/farukyolcu/Desktop/case2/ConsoleApplication1/ConsoleApplication1/obj/Debug/ConsoleApplication1.pdb
