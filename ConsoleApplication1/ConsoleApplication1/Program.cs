@@ -18,7 +18,8 @@ namespace ConsoleApplication1
                 if (wolfArray.Length != arraySize)
                 {
                     Console.WriteLine($"Girilen kurt türü sayısı {arraySize} ile eşleşmiyor. Lütfen doğru sayıda kurt türü girin.");
-                    return;
+                    System.Threading.Thread.Sleep(2000);
+                    Environment.Exit(0);
                 }
 
                 for (int i = 0; i < charList.Length; i++)
